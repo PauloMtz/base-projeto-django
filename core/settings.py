@@ -68,6 +68,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+# Envio de e-mail
+EMAIL_BACKEND = config("ENV_EMAIL_BACKEND")
+EMAIL_HOST = config("ENV_EMAIL_HOST")
+EMAIL_USE_TLS = config("ENV_EMAIL_USE_TLS", cast=bool)
+EMAIL_PORT = config("ENV_EMAIL_PORT", cast=int)
+EMAIL_HOST_USER = config("ENV_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("ENV_EMAIL_HOST_PASSWORD")
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
