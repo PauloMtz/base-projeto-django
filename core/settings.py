@@ -17,6 +17,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -25,11 +26,10 @@ SECRET_KEY = config("ENV_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("ENV_DEBUG", cast=bool, default=False)
+
 ALLOWED_HOSTS = config("ENV_ALLOWED_HOSTS", cast=Csv())
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",

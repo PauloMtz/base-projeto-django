@@ -40,6 +40,30 @@ Com o ambiente virtual ativo, instale os pacotes principais usados neste inicio 
 pip install Django pillow python-decouple dj-database-url mysqlclient black
 ```
 
+## Como criar o arquivo requirements.txt
+
+Depois de instalar as dependencias no ambiente virtual, gere o arquivo `requirements.txt` com o comando:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Esse comando grava no arquivo todas as dependencias instaladas atualmente no ambiente.
+
+## Como atualizar o requirements.txt
+
+Sempre que instalar, remover ou atualizar pacotes no ambiente virtual, gere novamente o arquivo para refletir o estado atual das dependencias:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Se quiser instalar as dependencias listadas nesse arquivo em outro ambiente, use:
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Como criar um projeto com Django
 
 Depois de ativar o ambiente virtual e instalar as dependencias, crie o projeto com o comando abaixo:
@@ -94,12 +118,16 @@ Este projeto ja possui a configuracao no arquivo `.vscode/settings.json` com as 
 ```json
 {
 	"editor.formatOnSave": true,
-	"python.formatting.provider": "black",
-	"python.analysis.typeCheckingMode": "off"
+	"python.analysis.typeCheckingMode": "off",
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	}
 }
 ```
 
 Para abrir o arquivo de settings do do VS Code, digite 'CTRL' + 'SHIFT' + p, digite settings e procure por Open Workspace Settings (JSON), e informe as configurações acima.
+
+Tambem e necessario ter instalada a extensao `ms-python.black-formatter` no VS Code.
 
 Com isso, ao salvar um arquivo Python no VS Code, o editor aplica a formatacao automaticamente usando o Black.
 
@@ -116,6 +144,22 @@ Ou, para um unico arquivo:
 ```bash
 black nome_do_arquivo.py
 ```
+
+## Como gerar uma nova SECRET_KEY do Django
+
+Este projeto possui o arquivo `generate_secret_key.py` na raiz para gerar uma nova chave. Com o ambiente virtual ativo, execute:
+
+```powershell
+python .\generate_secret_key.py
+```
+
+Se o comando `python` nao estiver disponivel no seu terminal do Windows, voce pode usar:
+
+```powershell
+py .\generate_secret_key.py
+```
+
+A chave sera exibida no terminal e podera ser copiada para a variavel `ENV_SECRET_KEY` do seu arquivo `.env`.
 
 ## Iniciar o servidor de desenvolvimento:
 
